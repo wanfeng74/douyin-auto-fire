@@ -7,10 +7,11 @@ on:
         description: Only verify login and friends without sending
         type: boolean
         default: false
-  # 使用 GitHub Actions 的日程时把下面三行注释删掉；用外部 cron 不用管
-  # schedule:
-  #   - cron: "0 0 * * *"
-  #     timezone: "Asia/Shanghai"
+  # 每天北京时间 10:00 自动发送。
+  # 注意：GitHub Actions 的 schedule 只认 UTC，且不支持 timezone 键，
+  # 因此这里用 UTC 02:00（= 北京时间 10:00），不要写 timezone 字段。
+  schedule:
+    - cron: "0 2 * * *"
 
 concurrency:
   group: douyin-daily-sender
